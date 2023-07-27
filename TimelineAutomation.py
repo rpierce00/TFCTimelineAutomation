@@ -63,15 +63,18 @@ def getSubTasks(taskNum, exportWS, colCount):
     return allSubTaskInfo
 
 def openTimelineTemplate():
-    wb = openpyxl.load_workbook("SCRUBBED TFC project-timeline.xlsx")
+    docPath = 'TFC Project-Timeline Code Export '+str(datetime.date.today())+'.xlsx'
+    wb = openpyxl.load_workbook("SCRUBBED TFC Timeline TABLE.xlsx")
     templateWS = wb['ProjectTimeline']
     printData(templateWS)
-    #wb.save('TFC Project-Timeline Updated '+str(datetime.date.today())+'.xlsx')
+    wb.save(docPath)
+    wb.close()
+
 
 def printData(templateWS):
 
-    rowNum = 32
-    insertAbove = 33
+    rowNum = 6
+    insertAbove = 7
     for key, v in majorTaskNameAndNumber.items():
 
         categoryCell = templateWS['A'+str(rowNum)]
@@ -89,6 +92,9 @@ def printData(templateWS):
 
             colorCell = templateWS['E'+str(rowNum)]
             colorCell.value = t['color']
+
+            t = templateWS.tables['Table13']
+            t.ref = 'A4:L'+str(rowNum)
 
             templateWS.insert_rows(insertAbove)
             rowNum+= 1
