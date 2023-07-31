@@ -7,7 +7,6 @@ from xlwings.constants import AutoFillType
 warnings.filterwarnings('ignore')
 
 colors = ['Blue','Red','Brown','Green','Orange','Purple']
-subTaskKeys = ['name','startDate','endDate','color']
 
 def getExportFileNameAndOpenWorkbook ():
     excelFileName = input("Enter the file name of the excel workbook exported for the TFC Project Planner: \n")
